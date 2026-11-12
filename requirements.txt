@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+sqlalchemy
+alembic
+pydantic-settings
+psycopg2-binary
+alembic # run: alembic init migrations
+pgvector
+
+# pip install -r requirements.txt
