@@ -27,7 +27,7 @@ class DocumentChunk(Base):
     section_title = Column(String(500), nullable=True)
     # Additional extraction metadata
     chunk_metadata = Column(JSON, nullable=True)
-    embedding = Column(Vector(EMBEDDING_DIMENSION), nullable=True)
+    embedding = Column(Vector(EMBEDDING_DIMENSION), nullable=True) #CREATE EXTENSION IF NOT EXISTS vector;
     created_at = Column(DateTime(timezone=True),server_default=func.now())
 
     document = relationship("Document", back_populates="chunks")

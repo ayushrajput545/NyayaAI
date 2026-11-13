@@ -7,5 +7,8 @@ pydantic-settings
 psycopg2-binary
 alembic # run: alembic init migrations
 pgvector
+pwdlib[argon2] #secure password hashing
+pyjwt
+email-validator
 
 # pip install -r requirements.txt
