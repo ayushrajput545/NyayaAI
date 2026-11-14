@@ -10,5 +10,6 @@ pgvector
 pwdlib[argon2] #secure password hashing
 pyjwt
 email-validator
+python-multipart
 
 # pip install -r requirements.txt
