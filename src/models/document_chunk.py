@@ -9,7 +9,7 @@ from sqlalchemy.orm import relationship
 
 
 # model='gemini-embedding-001'
-EMBEDDING_DIMENSION = 3072
+EMBEDDING_DIMENSION = 384
 
 
 class DocumentChunk(Base):

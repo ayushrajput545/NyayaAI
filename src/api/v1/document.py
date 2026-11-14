@@ -8,9 +8,11 @@ from src.models.document import Document
 from src.core.dependencies import get_current_user
 from src.services.document_service import (save_document,get_document_path,delete_stored_file)
 from fastapi.responses import FileResponse
+from src.services.rag_service import indexingPhase
 
 document_routes = APIRouter(prefix='/documents/api/v1')
 
+#User Upload PDF -> Save PDF and store its path in DB + mark status "uploaded" -> Load PDF -> Chunking -> Generate embeddings -> Store chunks and embedding in DB and mark that document status as "proccessed"
 @document_routes.post('/upload', response_model=DocumentResponse , status_code=status.HTTP_201_CREATED)
 def upload_document(file:UploadFile , db:Session=Depends(get_db) , current_user:User=Depends(get_current_user)):
 
@@ -30,6 +32,10 @@ def upload_document(file:UploadFile , db:Session=Depends(get_db) , current_user:
         db.add(document)
         db.commit()
         db.refresh(document)
+
+        # RAG: Indexing phase starts
+        total_chunks = indexingPhase(db, document)
+
     except Exception as exc:
         db.rollback()
         delete_stored_file(saved_file["storage_key"])
@@ -38,7 +44,12 @@ def upload_document(file:UploadFile , db:Session=Depends(get_db) , current_user:
             detail="Unable to save document metadata."
         )
 
-    return document
+    return {
+        "message": "PDF uploaded and processed successfully",
+        "document_id": str(document.id),
+        "filename": document.filename,
+        "total_chunks": total_chunks
+    }
 
 @document_routes.get("/{document_id}", response_model=DocumentResponse)
 def get_document(document_id: int , db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):

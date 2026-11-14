@@ -68,7 +68,7 @@ def save_document(file:UploadFile , user_id:str):
                 if first_chunk:
                     first_chunk = False
 
-                    if not chunk.startswith(b"%PDF-"):
+                    if b"%PDF-" not in chunk[:1024]:
                         raise HTTPException(
                             status_code=400,
                             detail="The uploaded file is not a valid PDF."
@@ -79,7 +79,7 @@ def save_document(file:UploadFile , user_id:str):
                 if total_size > max_size:
                     raise HTTPException(
                         status_code=413,
-                        detail=f"Maximum file size is 20 MB."
+                        detail="Maximum file size is 20 MB."
                     )
 
                 sha256.update(chunk)
