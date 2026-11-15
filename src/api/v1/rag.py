@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends ,HTTPException
 from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from src.config.db import get_db
@@ -11,6 +11,7 @@ rag_routes = APIRouter(prefix="/rag/api/v1")
 
 class AskQueRequest(BaseModel):
     question: str
+    conversation_id: int | None = None 
 
 @rag_routes.post('/ask_que')
 def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -18,8 +19,15 @@ def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), curren
     result = ask_question(
         db,
         body.question,
-        current_user.id
+        current_user.id,
+        body.conversation_id #by default cit is null , we pass conversation id from frontend after saving it in state that is present in previous message
     )
+
+    if result is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Conversation not found."
+        )
 
     return result
 
