@@ -17,5 +17,7 @@ langchain-text-splitters
 pypdf
 langchain-huggingface
 sentence-transformers
+langchain-groq
+dotenv
 
 # pip install -r requirements.txt
