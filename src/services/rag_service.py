@@ -9,6 +9,9 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from src.models.conversation import Conversation
 from src.models.message import Message
+from sentence_transformers import CrossEncoder
+import re
+from rank_bm25 import BM25Okapi
 
 
 load_dotenv()
@@ -18,6 +21,15 @@ embedding_model = HuggingFaceEmbeddings(
 )
 
 llm = ChatGroq(model='openai/gpt-oss-120b', temperature=0)
+
+reranker = CrossEncoder(
+    "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"
+)
+
+# This converts text into lowercase tokens for BM25 matching. It retains Hindi words as well.
+# "Right to privacy is a fundamental right" -> ["right", "to", "privacy", "is", "a", "fundamental", "right"]
+def tokenize(text):
+    return re.findall(r"\w+", text.lower())
 
 
 # Indexing Phase
@@ -117,8 +129,11 @@ def ask_question(db, question , user_id , conversation_id=None):
     # Rewrite question using conversation history
     search_question = rewrite_question(question, chat_history)
 
-    # Retrive relevent chunks
-    results = search_chunks(db, search_question, user_id) #lis of dictionanry
+    # Retrive relevent chunks: Vector Search
+    # results = search_chunks(db, search_question, user_id) #lis of dictionanry
+
+    # Hybrid Search
+    results = search_chunksV2(db, search_question, user_id)
 
     if len(results) == 0:
         return {
@@ -156,7 +171,7 @@ def ask_question(db, question , user_id , conversation_id=None):
         "sources": results
     }
 
-
+# Vector Search (Not in Use For now)
 def search_chunks(db, question , user_id):
 
     # Convert question into embedding
@@ -195,8 +210,121 @@ def search_chunks(db, question , user_id):
     return search_results # it retrive top 5 chunks in dictionary form along with filename and page number
 
 
-# Pass those retrived chunks along with que to LLM
+# Hybrid Search = BM25 search + Vector Search
+def search_chunksV2(db, question, user_id):
 
+    # 1. Get all accessible document chunks
+    all_chunks = (
+        db.query(DocumentChunk, Document.filename)
+        .join(
+            Document,
+            Document.id == DocumentChunk.document_id
+        )
+        .filter(
+            or_(
+                Document.uploaded_by == user_id,
+                Document.uploaded_by == 3
+            )
+        )
+        .all()
+    )
+
+    if not all_chunks:
+        return []
+
+    # 2. Prepare BM25 corpus: corpus is just a list that contain all chunks in lowercase tokens
+    corpus=[]
+
+    for i in range(len(all_chunks)):
+        corpus.append(tokenize(all_chunks[i][0].content))
+
+    bm25 = BM25Okapi(corpus) #it prepares the information needed to calculate keyword relevance scores.
+
+    # 3. Search using BM25
+    question_tokens = tokenize(question)
+
+    bm25_scores = bm25.get_scores(question_tokens) #BM25 calculates a relevance score for every chunk in the corpus. The higher the score, generally the more relevant the chunk.
+
+    bm25_indexes = sorted( #descending order of bm25_scores
+        range(len(bm25_scores)),
+        key=lambda i: bm25_scores[i],
+        reverse=True
+    )
+
+    bm25_results = []
+
+    #4. Now retrieve the top 10 chunks
+    for i in range(min(10, len(bm25_indexes))):
+
+        index = bm25_indexes[i]
+
+        chunk = all_chunks[index][0]
+
+        bm25_results.append(chunk)
+
+    #5. SEMENTIC/VECTOR Search Previous appraoch
+    question_embedding = embedding_model.embed_query(question)
+
+    vector_rows = (
+        db.query(DocumentChunk)
+        .join(
+            Document,
+            Document.id == DocumentChunk.document_id
+        )
+        .filter(
+            or_(
+                Document.uploaded_by == user_id,
+                Document.uploaded_by == 3
+            ),
+            DocumentChunk.embedding.isnot(None)
+        )
+        .order_by(
+            DocumentChunk.embedding.cosine_distance(
+                question_embedding
+            )
+        )
+        .limit(10)
+        .all()
+    )
+
+    # 6. Combine both result lists using RRF
+    hybrid_results = reciprocal_rank_fusion(
+        bm25_results,
+        vector_rows
+    )
+
+    # 7. Prepare chunks for reranking
+    rerank_input = []
+
+    for i in range(len(hybrid_results)):
+
+        chunk = hybrid_results[i]
+
+        filename = ""
+
+        for j in range(len(all_chunks)):
+            if all_chunks[j][0].id == chunk.id:
+                filename = all_chunks[j][1]
+                break
+
+        rerank_input.append({
+            "chunk_id": str(chunk.id),
+            "filename": filename,
+            "page_number": chunk.page_number,
+            "content": chunk.content
+        })
+
+        # 8. Rerank the candidates
+    reranked_results = rerank_chunks(
+        question,
+        rerank_input
+    )
+
+    return reranked_results[:5]  #return top 5 chunks
+
+
+
+# Pass those retrived chunks along with que to LLM
 def generate_answer(question , context, chat_history):
 
     history = ""
@@ -263,3 +391,80 @@ def rewrite_question(question , chat_history):
 
         return response.content.strip()
 
+
+# Reranker function: 
+# Reranking: It improve the final result by providing rank(score) to each chunk against the original question, then chunk that has higher rank goes at the top
+def rerank_chunks(question , chunks):
+    pairs=[]
+
+    for i in range(len(chunks)):
+        pairs.append([
+            question,
+            chunks[i]["content"]
+        ])
+
+    scores = reranker.predict(pairs)
+
+    for i in range(len(chunks)):
+        chunks[i]["rerank_score"] = float(scores[i])
+
+    chunks.sort(
+        key=lambda x: x["rerank_score"],
+        reverse=True
+    )
+
+    return chunks
+
+# RRF function : This is where hybrid search appears
+# bm25_results = [A, B, C, D]
+# vector_rows = [C, A, E, F]
+# Notice:
+# - A appears in both.
+# - C appears in both.
+# - B and D appear only in BM25.
+# - E and F appear only in vector search.
+# RRF combines these rankings and calculates a new score. using one formula
+
+def reciprocal_rank_fusion(bm25_results, vector_results):
+
+    scores = {}
+    chunk_map = {}
+
+    k = 60
+
+    # Add BM25 rankings
+    for i in range(len(bm25_results)):
+
+        chunk = bm25_results[i]
+
+        chunk_map[chunk.id] = chunk
+
+        if chunk.id not in scores:
+            scores[chunk.id] = 0
+
+        scores[chunk.id] += 1 / (k + i + 1)
+
+    # Add vector rankings
+    for i in range(len(vector_results)):
+
+        chunk = vector_results[i]
+
+        chunk_map[chunk.id] = chunk
+
+        if chunk.id not in scores:
+            scores[chunk.id] = 0
+
+        scores[chunk.id] += 1 / (k + i + 1)
+
+    ranked_ids = sorted(
+        scores,
+        key=lambda x: scores[x],
+        reverse=True
+    )
+
+    results = []
+
+    for i in range(len(ranked_ids)):
+        results.append(chunk_map[ranked_ids[i]])
+
+    return results 

@@ -19,5 +19,6 @@ langchain-huggingface
 sentence-transformers
 langchain-groq
 dotenv
+rank-bm25
 
 # pip install -r requirements.txt
