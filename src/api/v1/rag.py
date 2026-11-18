@@ -12,6 +12,7 @@ rag_routes = APIRouter(prefix="/rag/api/v1")
 class AskQueRequest(BaseModel):
     question: str
     conversation_id: int | None = None 
+    document_id: int | None = None
 
 @rag_routes.post('/ask_que')
 def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
@@ -20,7 +21,8 @@ def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), curren
         db,
         body.question,
         current_user.id,
-        body.conversation_id #by default cit is null , we pass conversation id from frontend after saving it in state that is present in previous message
+        body.conversation_id, #by default cit is null , we pass conversation id from frontend after saving it in state that is present in previous message
+        body.document_id # allow llm to generate ans stricltly from user's uploaded pdf not from any other admin document
     )
 
     if result is None:

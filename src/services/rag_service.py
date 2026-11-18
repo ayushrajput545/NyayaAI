@@ -12,7 +12,7 @@ from src.models.message import Message
 from sentence_transformers import CrossEncoder
 import re
 from rank_bm25 import BM25Okapi
-
+ 
 
 load_dotenv()
 
@@ -77,7 +77,9 @@ def indexingPhase(db, document):
 
 
 # Querying phase - retrieval
-def ask_question(db, question , user_id , conversation_id=None):
+def ask_question(db, question , user_id , conversation_id=None , document_id=None):
+
+    from src.services.advance_rag_services import rewrite_question , advanced_search # import here to remove circular dependency
 
     # Find existing conversation or create a new one
     if conversation_id:
@@ -133,14 +135,34 @@ def ask_question(db, question , user_id , conversation_id=None):
     # results = search_chunks(db, search_question, user_id) #lis of dictionanry
 
     # Hybrid Search
-    results = search_chunksV2(db, search_question, user_id)
+    # results = search_chunksV2(db, search_question, user_id)
+
+    # Advance Search
+    results = advanced_search(db, search_question, user_id , document_id)
 
     if len(results) == 0:
+
+        answer = (
+            "I couldn't find sufficiently relevant information "
+            "in your uploaded documents to answer this question."
+        )
+
+        assistant_message = Message(
+            conversation_id=conversation.id,
+            role="assistant",
+            content=answer
+        )
+
+        db.add(assistant_message)
+        db.commit()
+
         return {
+            "conversation_id": str(conversation.id),
             "question": question,
-            "answer": "No relevant information found in your uploaded documents.",
+            "answer": answer,
             "sources": []
         }
+    
 
     #Prepare context for llm
     context=""
@@ -211,7 +233,7 @@ def search_chunks(db, question , user_id):
 
 
 # Hybrid Search = BM25 search + Vector Search
-def search_chunksV2(db, question, user_id):
+def search_chunksV2(db, question, user_id ,document_id=None):
 
     # 1. Get all accessible document chunks
     all_chunks = (
@@ -226,8 +248,15 @@ def search_chunksV2(db, question, user_id):
                 Document.uploaded_by == 3
             )
         )
-        .all()
     )
+
+    # Apply document-specific filter if document_id is provided: search stricltly from user's uploaded doc
+    if document_id is not None:
+        all_chunks_query = all_chunks_query.filter(
+            DocumentChunk.document_id == document_id
+        )
+
+    all_chunks = all_chunks.all() #convert all chunks in list format
 
     if not all_chunks:
         return []
@@ -314,13 +343,7 @@ def search_chunksV2(db, question, user_id):
             "content": chunk.content
         })
 
-        # 8. Rerank the candidates
-    reranked_results = rerank_chunks(
-        question,
-        rerank_input
-    )
-
-    return reranked_results[:5]  #return top 5 chunks
+    return rerank_input  # Reranking happen in advance_search function
 
 
 
@@ -363,33 +386,6 @@ def generate_answer(question , context, chat_history):
     return response.content
 
 
-# Manage Conversation History
-def rewrite_question(question , chat_history):
-    if len(chat_history) == 0:
-        return question
-
-    history=""
-
-    for i in range(len(chat_history)):
-        history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
-
-        prompt = f"""
-            Based on the conversation history, rewrite the latest question
-            as a standalone question that can be understood independently.
-
-            Do not answer the question.
-            Return only the rewritten question.
-
-            Conversation:
-            {history}
-
-            Latest question:
-            {question}
-        """
-
-        response = llm.invoke(prompt)
-
-        return response.content.strip()
 
 
 # Reranker function: 
