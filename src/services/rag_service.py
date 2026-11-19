@@ -79,6 +79,7 @@ def indexingPhase(db, document):
 # Querying phase - retrieval
 def ask_question(db, question , user_id , conversation_id=None , document_id=None):
 
+    print("Executing RAG Retrieval............")
     from src.services.advance_rag_services import rewrite_question , advanced_search # import here to remove circular dependency
 
     # Find existing conversation or create a new one
