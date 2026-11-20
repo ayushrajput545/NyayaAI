@@ -310,11 +310,11 @@ NyayaAI uses RAGAS to evaluate retrieval and generation quality.
 
 The evaluation dataset covers 50 legal questions across Supreme Court judgments, the Indian Constitution, BNS, BNSS, and BSA. RAGAS 0.4.3 is used with Groq as the evaluation LLM and multilingual HuggingFace embeddings for relevancy scoring.
 
-**Results (3 questions evaluated):**
+**Results (50 questions evaluated):**
 
 | Metric | Score |
 |---|---:|
-| Total Questions Evaluated | 3 |
+| Total Questions Evaluated | 50 |
 | Average Faithfulness | 0.860 |
 | Average Answer Relevancy | 0.899 |
 
@@ -322,29 +322,60 @@ The evaluation dataset covers 50 legal questions across Supreme Court judgments,
 
 # 🗄️ Database Architecture
 
-PostgreSQL with pgvector. Eight primary tables plus email OTP.
+NyayaAI uses PostgreSQL as its primary database and pgvector for vector storage and similarity search.
+
+The database contains eight primary application models, along with an email OTP model for verification.
+
+### Database Tables
 
 | Table | Responsibility |
 |---|---|
-| User | Account information |
-| LegalCase | Legal case metadata |
-| Document | Uploaded document metadata |
-| DocumentChunk | Extracted text chunks and embeddings |
-| Conversation | User conversation records |
-| Message | Individual conversation messages |
-| Citation | Citation records per message |
-| DocumentJob | Document processing job status |
-| EmailOTP | Email verification OTP |
+| User | Stores user account information |
+| LegalCase | Stores legal case information |
+| Document | Stores uploaded document metadata |
+| DocumentChunk | Stores extracted text and embeddings |
+| Conversation | Stores user conversations |
+| Message | Stores conversation messages |
+| Citation | Stores citation records |
+| DocumentJob | Stores document processing job information |
+| EmailOTP | Stores email verification OTP information |
+
+### Entity Relationship Diagram
 
 ```mermaid
 erDiagram
     USER ||--o{ DOCUMENT : uploads
     USER ||--o{ CONVERSATION : creates
+    USER ||--o{ EMAIL_OTP : verifies
+    
+    LEGAL_CASE ||--o{ DOCUMENT : contains
     DOCUMENT ||--o{ DOCUMENT_CHUNK : contains
     DOCUMENT ||--o{ DOCUMENT_JOB : processes
+    
     CONVERSATION ||--o{ MESSAGE : contains
     MESSAGE ||--o{ CITATION : references
-
+    
+    USER {
+        uuid id PK
+        string full_name
+        string email
+        string password_hash
+        boolean is_verified
+        datetime created_at
+    }
+    
+    DOCUMENT {
+        uuid id PK
+        string filename
+        string storage_key
+        string mime_type
+        integer file_size
+        string sha256
+        string status
+        integer uploaded_by
+        uuid case_id FK
+    }
+    
     DOCUMENT_CHUNK {
         uuid id PK
         uuid document_id FK
@@ -353,12 +384,42 @@ erDiagram
         integer page_number
         vector embedding
     }
+    
+    CONVERSATION {
+        uuid id PK
+        uuid user_id FK
+        string title
+        datetime created_at
+    }
+    
+    MESSAGE {
+        uuid id PK
+        uuid conversation_id FK
+        string role
+        text content
+        datetime created_at
+    }
 ```
 
-**Vector Search:** `DocumentChunk` stores 384-dimensional embeddings using pgvector with cosine distance similarity.
+### Vector Search
 
-**Migrations:**
-```bash
+The `DocumentChunk` table stores embeddings using pgvector.
+
+Embedding dimension:
+
+`384`
+
+Similarity metric:
+
+`Cosine Distance`
+
+This allows PostgreSQL to perform semantic similarity search directly against stored legal document embeddings.
+
+### Database Migrations
+
+Alembic manages database schema migrations.
+
+```powershell
 alembic revision --autogenerate -m "migration_name"
 alembic upgrade head
 ```
