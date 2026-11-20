@@ -1,0 +1,211 @@
+[
+  {
+    "question": "What was Section 66A of the Information Technology Act, 2000 and why was it struck down?",
+    "reference": "Section 66A punished sending information that is grossly offensive, menacing, or causes annoyance/inconvenience through computer resources or communication devices, with imprisonment up to three years. The Supreme Court in Shreya Singhal v. Union of India (2015) struck it down in its entirety as violative of Article 19(1)(a) and not saved under Article 19(2), because it was vague, overbroad, had no proximate relation to public order or any of the eight subjects in Article 19(2), and had a chilling effect on free speech."
+  },
+  {
+    "question": "What are the three key concepts the Supreme Court identified as fundamental to understanding the right to freedom of speech and expression in Shreya Singhal?",
+    "reference": "The Supreme Court in Shreya Singhal identified discussion, advocacy, and incitement as the three fundamental concepts. Mere discussion or advocacy of a cause, however unpopular, is at the heart of Article 19(1)(a). It is only when such discussion or advocacy reaches the level of incitement that Article 19(2) kicks in, allowing the State to make laws curtailing speech that tends to cause public disorder or affects sovereignty, security of State, friendly relations with foreign States, etc."
+  },
+  {
+    "question": "What test did the Supreme Court apply to determine whether Section 66A had a proximate relationship with public order?",
+    "reference": "The Supreme Court applied the test from Arun Ghosh v. State of West Bengal: whether a particular act leads to disturbance of the current life of the community or merely affects an individual leaving the tranquility of society undisturbed. The Court held Section 66A failed this test because it made no distinction between mass dissemination and dissemination to one person, did not require the message to have any tendency to disrupt public order, and lacked any ingredient of inciting anyone to do anything that would be an immediate threat to public safety or tranquility."
+  },
+  {
+    "question": "Why did the Supreme Court in Shreya Singhal hold that Section 66A was unconstitutionally vague?",
+    "reference": "The Court held Section 66A was unconstitutionally vague because expressions such as 'grossly offensive,' 'menacing,' 'annoyance,' 'inconvenience,' and 'persistently' were completely open-ended and undefined. No reasonable standard was laid down to define guilt, and neither accused persons nor enforcement authorities could know clearly on which side of the line a particular communication would fall. The Court noted that even judicially trained minds in English cases (Collins and Chambers) reached diametrically opposite conclusions on the same facts regarding 'grossly offensive' and 'menacing,' confirming there was no manageable standard."
+  },
+  {
+    "question": "How did the Supreme Court distinguish Section 66A from Section 66 of the IT Act on the question of vagueness?",
+    "reference": "The Court noted that Section 66, unlike Section 66A, requires mens rea as an ingredient — the words 'dishonestly' and 'fraudulently' are defined with some degree of specificity by reference to Sections 24 and 25 of the Indian Penal Code. Section 66A, by contrast, used completely open-ended, undefined, and vague language with no such mens rea requirement or definitional guidance."
+  },
+  {
+    "question": "What did the Supreme Court hold about the chilling effect of Section 66A on free speech?",
+    "reference": "The Court held that Section 66A was cast so widely that virtually any opinion on any subject would be covered by it, as any serious opinion dissenting with the mores of the day would be caught within its net. The undefined terms 'grossly offensive' and 'causing annoyance or inconvenience' took into their net a very large amount of protected and innocent speech, including liberal views on emancipation of women or abolition of the caste system. Such overbreadth would have a total chilling effect on free speech and the Section was declared unconstitutional also on the ground of overbreadth."
+  },
+  {
+    "question": "What was the Supreme Court's ruling on the constitutional validity of Section 69A of the IT Act in Shreya Singhal?",
+    "reference": "The Supreme Court upheld Section 69A and the Information Technology (Procedure and Safeguards for Blocking for Access of Information by Public) Rules, 2009 as constitutionally valid. Unlike Section 66A, Section 69A is a narrowly drawn provision: blocking can only be resorted to where the Central Government is satisfied it is necessary; such necessity is relatable only to subjects in Article 19(2); reasons must be recorded in writing; and the Rules provide for a hearing before a Committee before any blocking order is made. The intermediary failing to comply is the only one punishable."
+  },
+  {
+    "question": "How did the Supreme Court read down Section 79(3)(b) of the IT Act in Shreya Singhal?",
+    "reference": "The Court read down Section 79(3)(b) to mean that an intermediary, upon receiving actual knowledge from a court order that unlawful acts relatable to Article 19(2) are going to be committed, must then fail to expeditiously remove or disable access to that material. The Court reasoned that otherwise it would be very difficult for intermediaries like Google and Facebook to act when millions of requests are made and judge which are legitimate. Similarly, Rule 3(4) of the Intermediary Guidelines Rules 2011 was read down so that the 'knowledge' spoken of must only come through a court order."
+  },
+  {
+    "question": "What did the Supreme Court hold on the Article 14 challenge to Section 66A regarding differentiation between internet and other mediums of communication?",
+    "reference": "The Court rejected the Article 14 challenge, holding there is an intelligible differentia between speech on the internet and other mediums of communication. The internet gives any individual a platform requiring very little or no payment to air views, and content posted travels instantly and can reach millions worldwide. This rational differentia justifies creating separate offences for speech on the internet. However, the Court made clear that this intelligible differentia does not justify relaxing scrutiny of restrictions on the content of free speech over the internet."
+  },
+  {
+    "question": "What did the Supreme Court hold about the difference between 'public order' and 'law and order' in the context of Section 66A?",
+    "reference": "The Court relied on Dr. Ram Manohar Lohia v. State of Bihar which laid down the three concentric circles test: 'law and order' represents the largest circle, 'public order' the next, and 'security of State' the smallest. An act may affect law and order but not public order, and an act may affect public order but not security of State. Section 66A's offence is complete merely by sending a message for the purpose of causing annoyance without in any manner impacting public order, so the Section has no proximate relationship to public order whatsoever."
+  },
+  {
+    "question": "What guidelines did the Supreme Court lay down in Vishaka v. State of Rajasthan for prevention of sexual harassment at the workplace?",
+    "reference": "The Supreme Court laid down binding guidelines including: (1) Duty of employers to prevent or deter sexual harassment; (2) Definition of sexual harassment including physical contact and advances, demand or request for sexual favours, sexually coloured remarks, showing pornography, and any other unwelcome physical, verbal or non-verbal conduct of sexual nature; (3) Preventive Steps including express prohibition and notification; (4) Initiation of criminal proceedings where conduct constitutes a specific offence under IPC; (5) Disciplinary action under service rules; (6) Creation of a Complaint Mechanism ensuring time-bound treatment; (7) A Complaints Committee headed by a woman with not less than half women members and involvement of a third party NGO; (8) Workers' Initiative allowing employees to raise issues at workers' meetings; (9) Awareness creation of rights; (10) Employer assistance when harassment occurs by third parties."
+  },
+  {
+    "question": "What was the immediate cause for filing the Vishaka writ petition and what fundamental rights were alleged to be violated?",
+    "reference": "The immediate cause was an incident of alleged brutal gang rape of a social worker in a village of Rajasthan. The petition was filed as a class action by social activists and NGOs. The fundamental rights alleged to be violated were: the right to gender equality and right to life and liberty under Articles 14, 15 and 21, and the right to practice any profession or carry out any occupation, trade or business under Article 19(1)(g). The petition was filed under Article 32 for enforcement of these fundamental rights of working women."
+  },
+  {
+    "question": "What was the legal basis used by the Supreme Court in Vishaka to issue binding guidelines in the absence of legislation?",
+    "reference": "The Court used its power under Article 32 of the Constitution for enforcement of fundamental rights, combined with the role of the judiciary under the Beijing Statement of Principles of Independence of the Judiciary. The Court also read international conventions — particularly the Convention on the Elimination of All Forms of Discrimination against Women (CEDAW) ratified by India on June 25, 1993 — into the fundamental rights guaranteed under Articles 14, 15, 19(1)(g) and 21, in the absence of domestic law, as it is an accepted rule of judicial construction that international conventions must be read into domestic law when there is no inconsistency and there is a void in domestic law. The guidelines were declared as law under Article 141."
+  },
+  {
+    "question": "How did the Supreme Court define sexual harassment in its Vishaka guidelines?",
+    "reference": "The Supreme Court defined sexual harassment as including such unwelcome sexually determined behaviour (whether directly or by implication) as: (a) physical contact and advances; (b) a demand or request for sexual favours; (c) sexually coloured remarks; (d) showing pornography; (e) any other unwelcome physical, verbal or non-verbal conduct of sexual nature. The conduct is covered where it creates a reasonable apprehension that it could be humiliating and constitute a health and safety problem, particularly when the woman has reasonable grounds to believe her objection would disadvantage her in employment including recruiting or promotion, or when it creates a hostile work environment."
+  },
+  {
+    "question": "What structure did the Supreme Court prescribe for the Complaints Committee under the Vishaka guidelines?",
+    "reference": "The Complaints Committee should be headed by a woman, with not less than half of its members being women. To prevent pressure or influence from senior levels, the Committee must involve a third party — either an NGO or other body familiar with the issue of sexual harassment. The Complaints Committee must make an annual report to the government department concerned of the complaints and action taken. The employer and person in charge must also report on compliance with the guidelines, including reports of the Complaints Committee, to the government department."
+  },
+  {
+    "question": "What did the Supreme Court hold in Puttaswamy v. Union of India (2017) on whether privacy is a fundamental right?",
+    "reference": "A nine-judge bench of the Supreme Court unanimously held that privacy is a constitutionally protected right which emerges primarily from the guarantee of life and personal liberty in Article 21 of the Constitution. Elements of privacy also arise in varying contexts from the other facets of freedom and dignity recognised and guaranteed by the fundamental rights contained in Part III. The Court overruled M P Sharma and Kharak Singh to the extent they held that the right to privacy is not a guaranteed right under the Indian Constitution. Life and personal liberty were held to be inalienable rights inseparable from a dignified human existence, and privacy was held to be intrinsic to these rights."
+  },
+  {
+    "question": "What was the significance of the Kesavananda Bharati v. State of Kerala (1973) judgment?",
+    "reference": "In Kesavananda Bharati v. State of Kerala, decided on 24 April 1973 by a 13-judge bench, the Supreme Court laid down the Basic Structure doctrine, holding that while Parliament has wide power to amend the Constitution under Article 368, it cannot abrogate or destroy the basic structure or essential features of the Constitution. The Chief Justice identified the basic structure as including: (1) Supremacy of the Constitution; (2) Republican and Democratic form of Government; (3) Secular character of the Constitution; (4) Separation of powers between the Legislature, the executive and the judiciary; (5) Federal character of the Constitution. The basic foundation was held to be the dignity and freedom of the individual, which cannot by any form of amendment be destroyed."
+  },
+  {
+    "question": "What was the key constitutional question decided in Maneka Gandhi v. Union of India (1978)?",
+    "reference": "In Maneka Gandhi v. Union of India (1978), the Supreme Court held that the right to travel abroad is included in the right to personal liberty under Article 21. The case arose from the impounding of Maneka Gandhi's passport 'in public interest' without giving reasons. The Court held that Articles 14, 19 and 21 are not mutually exclusive but are interrelated and must be read together — a law depriving a person of personal liberty must satisfy the requirements of all three articles. It also held that the procedure established by law under Article 21 must be just, fair and reasonable, and not arbitrary, fanciful or oppressive, thereby importing a substantive due process standard."
+  },
+  {
+    "question": "What is the distinction between 'discussion', 'advocacy' and 'incitement' as explained in Shreya Singhal and why does it matter for free speech?",
+    "reference": "According to the Supreme Court in Shreya Singhal, mere discussion or even advocacy of a particular cause, howsoever unpopular, is at the heart of Article 19(1)(a). It is only when such discussion or advocacy reaches the level of incitement that Article 19(2) kicks in. At the incitement stage, a law may be made curtailing speech that leads inexorably to or tends to cause public disorder or tends to affect the sovereignty and integrity of India, security of the State, friendly relations with foreign States, etc. This distinction matters because Section 66A made no such distinction — it captured discussion and advocacy alongside incitement, thereby unlawfully restricting protected speech."
+  },
+  {
+    "question": "What did the Supreme Court in Shreya Singhal say about the use of American judgments in interpreting Article 19(1)(a)?",
+    "reference": "The Court held that American judgments have great persuasive value on the content of freedom of speech and expression and the tests laid down for its infringement, but differ significantly in one key aspect. The US First Amendment is absolute (Congress shall make no law abridging freedom of speech), whereas Article 19(1)(a) must be read with Article 19(2) which allows restrictions only on eight specific subject matters. In India, a law restricting free speech cannot pass muster if it is merely in the interest of the general public — it must be proximately related to one of the eight subjects in Article 19(2). American judgments are therefore relevant for understanding content and tests of infringement but not for the subject-matter limitations."
+  },
+  {
+    "question": "What does the Preamble of the Constitution of India declare India to be?",
+    "reference": "The Preamble declares India to be a Sovereign Socialist Secular Democratic Republic. It resolves to secure to all citizens: Justice — social, economic and political; Liberty of thought, expression, belief, faith and worship; Equality of status and of opportunity; and to promote among them all Fraternity assuring the dignity of the individual and the unity and integrity of the Nation."
+  },
+  {
+    "question": "What does Article 14 of the Indian Constitution guarantee?",
+    "reference": "Article 14 states: 'The State shall not deny to any person equality before the law or the equal protection of the laws within the territory of India.' It guarantees both equality before the law (a negative concept meaning absence of special privilege) and equal protection of the laws (a positive concept requiring equal treatment in equal circumstances)."
+  },
+  {
+    "question": "What does Article 21 of the Indian Constitution protect?",
+    "reference": "Article 21 states: 'No person shall be deprived of his life or personal liberty except according to procedure established by law.' As interpreted by the Supreme Court in Maneka Gandhi v. Union of India and subsequent cases, it protects not merely the right to animal existence but life with dignity, and the procedure established by law must be just, fair and reasonable. It encompasses a wide range of rights including the right to travel abroad, right to privacy, right to livelihood, and right to health."
+  },
+  {
+    "question": "What rights does Article 19(1) of the Indian Constitution confer on citizens?",
+    "reference": "Article 19(1) confers on all citizens the right to: (a) freedom of speech and expression; (b) assemble peaceably and without arms; (c) form associations or unions or co-operative societies; (d) move freely throughout the territory of India; (e) reside and settle in any part of the territory of India; and (g) practise any profession, or to carry on any occupation, trade or business."
+  },
+  {
+    "question": "What powers does Article 32 of the Constitution confer on the Supreme Court?",
+    "reference": "Article 32 guarantees the right to move the Supreme Court by appropriate proceedings for the enforcement of fundamental rights conferred by Part III. The Supreme Court has the power to issue directions, orders, or writs including writs in the nature of habeas corpus, mandamus, prohibition, quo warranto, and certiorari, whichever may be appropriate for the enforcement of fundamental rights. The right guaranteed by Article 32 shall not be suspended except as otherwise provided by the Constitution. Dr. B.R. Ambedkar called Article 32 the heart and soul of the Constitution."
+  },
+  {
+    "question": "What are the Fundamental Duties listed under Article 51A of the Indian Constitution?",
+    "reference": "Article 51A lists the fundamental duties of every citizen, including: to abide by the Constitution and respect its ideals and institutions, the National Flag and the National Anthem; to cherish noble ideals of the national struggle for freedom; to uphold and protect sovereignty, unity and integrity of India; to defend the country and render national service when called upon; to promote harmony and spirit of common brotherhood among all people of India transcending religious, linguistic and regional diversities and to renounce practices derogatory to the dignity of women; to value and preserve the rich heritage of composite culture; to protect and improve the natural environment; to develop scientific temper, humanism and spirit of inquiry and reform; to safeguard public property and abjure violence; and to strive towards excellence in all spheres of individual and collective activity."
+  },
+  {
+    "question": "What does Article 44 of the Indian Constitution direct the State to do?",
+    "reference": "Article 44, which is a Directive Principle of State Policy, states: 'The State shall endeavour to secure for the citizens a uniform civil code throughout the territory of India.' This is a directive principle and not a justiciable right, but the State is expected to work towards securing a uniform civil code for all citizens."
+  },
+  {
+    "question": "What does Article 21A of the Indian Constitution provide?",
+    "reference": "Article 21A, inserted by the Constitution (Eighty-sixth Amendment) Act, 2002, provides: 'The State shall provide free and compulsory education to all children of the age of six to fourteen years in such manner as the State may, by law, determine.' This article elevated the right to education to a fundamental right for children in the specified age group."
+  },
+  {
+    "question": "What restrictions can be placed on the freedom of speech and expression under Article 19(2) of the Constitution?",
+    "reference": "Article 19(2) allows the State to make laws imposing reasonable restrictions on the right to freedom of speech and expression in the interests of: sovereignty and integrity of India; security of the State; friendly relations with foreign States; public order; decency or morality; or in relation to contempt of court; defamation; or incitement to an offence. Any restriction must be a reasonable restriction and must be proximately related to one of these eight subject matters."
+  },
+  {
+    "question": "What does Article 15 of the Constitution prohibit?",
+    "reference": "Article 15 prohibits the State from discriminating against any citizen on grounds only of religion, race, caste, sex, place of birth, or any of them. No citizen shall, on these grounds alone, be subject to any disability, liability, restriction, or condition regarding access to shops, public restaurants, hotels, and places of public entertainment, or use of wells, tanks, bathing ghats, roads, and places of public resort maintained out of State funds. However, Article 15(3) permits the State to make special provisions for women and children, and Article 15(4) and (5) permit special provisions for socially and educationally backward classes, Scheduled Castes and Scheduled Tribes."
+  },
+  {
+    "question": "What does Article 368 of the Constitution deal with?",
+    "reference": "Article 368 deals with the power of Parliament to amend the Constitution and the procedure therefor. Parliament may in the exercise of its constituent power amend by way of addition, variation or repeal any provision of the Constitution in accordance with the procedure laid down in Article 368. Certain amendments require ratification by not less than one-half of the State Legislatures in addition to being passed by special majority in both Houses of Parliament. However, as held in Kesavananda Bharati, Parliament cannot under Article 368 abrogate or destroy the basic structure of the Constitution."
+  },
+  {
+    "question": "What is the purpose and scope of the Bharatiya Nyaya Sanhita, 2023?",
+    "reference": "The Bharatiya Nyaya Sanhita, 2023 (Act No. 45 of 2023), which received Presidential assent on 25th December 2023, is an Act to consolidate and amend the provisions relating to offences and for matters connected therewith or incidental thereto. It applies to every person liable to punishment for every act or omission contrary to its provisions committed within India, and also applies to citizens of India committing offences outside India, persons on ships or aircraft registered in India, and persons committing offences outside India targeting a computer resource located in India."
+  },
+  {
+    "question": "What is the punishment for murder under the Bharatiya Nyaya Sanhita, 2023?",
+    "reference": "Under Section 103 of the Bharatiya Nyaya Sanhita, 2023: (1) Whoever commits murder shall be punished with death or imprisonment for life, and shall also be liable to fine. (2) When a group of five or more persons acting in concert commits murder on the ground of race, caste or community, sex, place of birth, language, personal belief or any other similar ground, each member of such group shall be punished with death or with imprisonment for life, and shall also be liable to fine. Under Section 104, a person already under sentence of imprisonment for life who commits murder shall be punished with death or imprisonment for life for the remainder of that person's natural life."
+  },
+  {
+    "question": "How does the Bharatiya Nyaya Sanhita, 2023 define 'rape'?",
+    "reference": "Section 63 of the BNS defines rape as when a man penetrates his penis into the vagina, mouth, urethra or anus of a woman or makes her do so; inserts any object or body part (not being the penis) into the vagina, urethra or anus; manipulates any part of the body to cause penetration; or applies his mouth to the vagina, anus, or urethra — under seven circumstances including against her will, without consent, with consent obtained by threat of death or hurt, with consent when she believes him to be her husband, with consent when she is unable to understand the nature of the act due to unsoundness of mind or intoxication, with or without consent when under eighteen years of age, and when she is unable to communicate consent. Medical procedures are excluded, as is sexual intercourse by a man with his own wife if she is not under eighteen years of age."
+  },
+  {
+    "question": "What is the punishment for rape under the Bharatiya Nyaya Sanhita, 2023?",
+    "reference": "Under Section 64(1) of the BNS, whoever commits rape shall be punished with rigorous imprisonment of either description for a term which shall not be less than ten years, but which may extend to imprisonment for life, and shall also be liable to fine."
+  },
+  {
+    "question": "How does the Bharatiya Nyaya Sanhita, 2023 define 'organised crime'?",
+    "reference": "Section 111(1) of the BNS defines organised crime as any continuing unlawful activity including kidnapping, robbery, vehicle theft, extortion, land grabbing, contract killing, economic offence, cyber-crimes, trafficking of persons, drugs, weapons or illicit goods or services, human trafficking for prostitution or ransom, by any person or group of persons acting in concert, singly or jointly, either as a member of an organised crime syndicate or on behalf of such syndicate, by use of violence, threat of violence, intimidation, coercion, or by any other unlawful means to obtain direct or indirect material benefit including a financial benefit. An 'organised crime syndicate' means a group of two or more persons who, acting either singly or jointly as a syndicate or gang, indulge in any continuing unlawful activity."
+  },
+  {
+    "question": "What is the punishment for organised crime under the BNS where it results in death?",
+    "reference": "Under Section 111(2)(a) of the Bharatiya Nyaya Sanhita, 2023, if organised crime has resulted in the death of any person, the offender shall be punished with death or imprisonment for life, and shall also be liable to fine which shall not be less than ten lakh rupees. Where no death results, under Section 111(2)(b), the punishment is imprisonment for a term not less than five years but which may extend to imprisonment for life, with a fine not less than five lakh rupees."
+  },
+  {
+    "question": "How does the BNS define 'dishonestly' and 'fraudulently'?",
+    "reference": "Under Section 2 of the BNS: 'dishonestly' means doing anything with the intention of causing wrongful gain to one person or wrongful loss to another person; 'fraudulently' means doing anything with the intention to defraud but not otherwise. 'Wrongful gain' means gain by unlawful means of property to which the person gaining is not legally entitled, and 'wrongful loss' means the loss by unlawful means of property to which the person losing it is legally entitled."
+  },
+  {
+    "question": "What is the Bharatiya Nagarik Suraksha Sanhita, 2023 and what does it deal with?",
+    "reference": "The Bharatiya Nagarik Suraksha Sanhita, 2023 (Act No. 46 of 2023), which received Presidential assent on 25th December 2023, is an Act to consolidate and amend the law relating to criminal procedure. It governs how offences under the Bharatiya Nyaya Sanhita, 2023 and other laws are investigated, inquired into, tried, and otherwise dealt with. Its provisions, other than those relating to Chapters IX, XI and XII, do not apply to the State of Nagaland or tribal areas, though State Governments may apply them by notification."
+  },
+  {
+    "question": "What classes of criminal courts are established under the BNSS, 2023?",
+    "reference": "Under Section 6 of the BNSS, besides High Courts and courts constituted under any other law, there shall be in every State the following classes of criminal courts: (i) Courts of Session; (ii) Judicial Magistrates of the first class; (iii) Judicial Magistrates of the second class; and (iv) Executive Magistrates."
+  },
+  {
+    "question": "What does Section 173 of the BNSS say about registration of FIRs?",
+    "reference": "Section 173(1) of the BNSS provides that every information relating to the commission of a cognizable offence, irrespective of the area where the offence is committed, may be given orally or by electronic communication to an officer in charge of a police station. If given orally, it shall be reduced to writing and read to the informant; if given by electronic communication, it shall be taken on record and signed within three days by the person giving it. This provision effectively codifies the concept of Zero FIR, as the FIR can be registered irrespective of the area where the offence was committed."
+  },
+  {
+    "question": "What time limit does the BNSS prescribe for completing investigation in sexual offence cases?",
+    "reference": "Under Section 193(2) of the BNSS, investigation in relation to offences under Sections 64, 65, 66, 67, 68, 70, and 71 of the Bharatiya Nyaya Sanhita, 2023 (rape and related sexual offences) or under Sections 4, 6, 8 or 10 of the Protection of Children from Sexual Offences Act, 2012 shall be completed within two months from the date on which the information was recorded by the officer in charge of the police station."
+  },
+  {
+    "question": "What does Section 258 of the BNSS say about the time for delivering judgment?",
+    "reference": "Section 258(1) of the BNSS provides that after hearing arguments and points of law, the Judge shall give a judgment in the case as soon as possible, within a period of thirty days from the date of completion of arguments. This period may be extended to forty-five days for reasons to be recorded in writing. If the accused is convicted, the Judge shall, unless proceeding under Section 401, hear the accused on the question of sentence and then pass sentence according to law."
+  },
+  {
+    "question": "Under what circumstances may handcuffs be used while making an arrest under the BNSS?",
+    "reference": "Under the BNSS, handcuffs may be used while making an arrest or while producing a person before court only when the person is a habitual or repeat offender, or who escaped from custody, or who has committed an offence of organised crime, terrorist act, drug related crime, illegal possession of arms and ammunition, murder, rape, acid attack, counterfeiting of coins and currency-notes, human trafficking, sexual offence against children, or offence against the State."
+  },
+  {
+    "question": "What restriction does the BNSS place on arrest of women?",
+    "reference": "Save in exceptional circumstances, no woman shall be arrested after sunset and before sunrise under the BNSS. Where such exceptional circumstances exist, the woman police officer shall, by making a written report, obtain the prior permission of the Magistrate of the first class within whose local jurisdiction the offence is committed or the arrest is to be made before arresting the woman."
+  },
+  {
+    "question": "What is the Bharatiya Sakshya Adhiniyam, 2023 and what does it replace?",
+    "reference": "The Bharatiya Sakshya Adhiniyam, 2023 (Act No. 47 of 2023) is a comprehensive law of evidence that consolidates and modernises the law relating to evidence in India. It replaces the Indian Evidence Act, 1872. The Act was enacted along with the Bharatiya Nyaya Sanhita, 2023 and the Bharatiya Nagarik Suraksha Sanhita, 2023 as part of a legislative overhaul of the criminal justice system in India. The current version cited is as on 6th October, 2025."
+  },
+  {
+    "question": "What does Section 23 of the Bharatiya Sakshya Adhiniyam say about confession to a police officer?",
+    "reference": "Section 23(1) of the BSA provides that no confession made to a police officer shall be proved as against a person accused of any offence. Section 23(2) provides that no confession made by any person while he is in the custody of a police officer, unless it is made in the immediate presence of a Magistrate, shall be proved against him. The proviso clarifies that when any fact is deposed to as discovered in consequence of information received from a person accused of an offence in police custody, so much of such information — whether or not it amounts to a confession — as relates distinctly to the fact discovered may be proved."
+  },
+  {
+    "question": "Under what circumstances is a confession irrelevant under Section 22 of the Bharatiya Sakshya Adhiniyam?",
+    "reference": "Under Section 22 of the BSA, a confession made by an accused person is irrelevant in a criminal proceeding if the making of the confession appears to the Court to have been caused by any inducement, threat, coercion or promise having reference to the charge against the accused, proceeding from a person in authority, and sufficient to give the accused grounds to suppose that by making it he would gain any advantage or avoid any evil of a temporal nature. However, if the impression caused by such inducement, threat, coercion or promise has in the Court's opinion been fully removed, the confession becomes relevant."
+  },
+  {
+    "question": "What conditions must be satisfied for an electronic record to be admissible under Section 63 of the Bharatiya Sakshya Adhiniyam?",
+    "reference": "Under Section 63 of the BSA, any information contained in an electronic record printed on paper, stored, recorded or copied in optical or magnetic media or semiconductor memory produced by a computer or communication device shall be deemed a document and admissible without further proof if: (a) the computer output containing the information was produced by a computer during the period it was used regularly for the activities in question by the person having lawful control over its use; (b) information of the kind contained was regularly fed into the computer in the ordinary course of those activities during that period; and two additional conditions under sub-section (2)(c) and (d) relating to the proper operation of the computer during the material period and the information being derived from information in the ordinary course of activities."
+  },
+  {
+    "question": "How does the Bharatiya Sakshya Adhiniyam define 'burden of proof'?",
+    "reference": "Section 104 of the BSA provides: 'Whoever desires any Court to give judgment as to any legal right or liability dependent on the existence of facts which he asserts must prove that those facts exist, and when a person is bound to prove the existence of any fact, it is said that the burden of proof lies on that person.' For example, if A desires a court to give judgment that B shall be punished for a crime A says B committed, A must prove that B committed the crime."
+  },
+  {
+    "question": "When are opinions of experts relevant under the Bharatiya Sakshya Adhiniyam?",
+    "reference": "Under Section 39 of the BSA, when the Court has to form an opinion upon a point of foreign law or of science or art, or any other field, or as to identity of handwriting or finger impressions, the opinions upon that point of persons specially skilled in such foreign law, science or art, or any other field, or in questions as to identity of handwriting or finger impressions are relevant facts and such persons are called experts. Illustrations include: opinions of experts on symptoms produced by poison alleged to have caused death; opinions on whether symptoms exhibited indicate unsoundness of mind; opinions on whether a document was written by a particular person."
+  },
+  {
+    "question": "What does Section 22 of the BNS say about common intention?",
+    "reference": "Section 3(5) of the BNS (General Explanations) provides that when a criminal act is done by several persons in furtherance of the common intention of all, each of such persons is liable for that act in the same manner as if it were done by him alone. Section 3(6) provides that wherever an act is criminal only by reason of its being done with criminal knowledge or intention, and is done by several persons, each of such persons who joins in the act with such knowledge or intention is liable for the act in the same manner as if the act were done by him alone with that knowledge or intention."
+  }
+]
+

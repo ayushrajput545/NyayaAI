@@ -1,0 +1,259 @@
+{
+    "total_questions": 3,
+    "faithfulness_evaluated": 3,
+    "answer_relevancy_evaluated": 3,
+    "average_faithfulness": 0.86, 
+    "average_answer_relevancy": 0.8988036893498246,
+    "individual_results": [
+        {
+            "question": "What was Section 66A of the Information Technology Act, 2000 and why was it struck down?",
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9268618146744565
+        },
+        {
+            "question": "What are the three key concepts the Supreme Court identified as fundamental to understanding the right to freedom of speech and expression in Shreya Singhal?",
+            "faithfulness": 0.0,
+            "answer_relevancy": 0.834888274281652
+        },
+        {
+            "question": "What test did the Supreme Court apply to determine whether Section 66A had a proximate relationship with public order?",
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9346609790933652
+        },
+        {
+            "question": "Why did the Supreme Court in Shreya Singhal hold that Section 66A was unconstitutionally vague?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "How did the Supreme Court distinguish Section 66A from Section 66 of the IT Act on the question of vagueness?",
+            "faithfulness": 0.65,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "What did the Supreme Court hold about the chilling effect of Section 66A on free speech?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What was the Supreme Court's ruling on the constitutional validity of Section 69A of the IT Act in Shreya Singhal?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "How did the Supreme Court read down Section 79(3)(b) of the IT Act in Shreya Singhal?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "What did the Supreme Court hold on the Article 14 challenge to Section 66A regarding differentiation between internet and other mediums of communication?",
+            "faithfulness": 0.65,
+            "answer_relevancy": 0.88
+        },
+        {
+            "question": "What did the Supreme Court hold about the difference between 'public order' and 'law and order' in the context of Section 66A?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What guidelines did the Supreme Court lay down in Vishaka v. State of Rajasthan for prevention of sexual harassment at the workplace?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What was the immediate cause for filing the Vishaka writ petition and what fundamental rights were alleged to be violated?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.88
+        },
+        {
+            "question": "What was the legal basis used by the Supreme Court in Vishaka to issue binding guidelines in the absence of legislation?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "How did the Supreme Court define sexual harassment in its Vishaka guidelines?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What structure did the Supreme Court prescribe for the Complaints Committee under the Vishaka guidelines?",
+            "faithfulness": 0.65,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "What did the Supreme Court hold in Puttaswamy v. Union of India (2017) on whether privacy is a fundamental right?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What was the significance of the Kesavananda Bharati v. State of Kerala (1973) judgment?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What was the key constitutional question decided in Maneka Gandhi v. Union of India (1978)?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "What is the distinction between 'discussion', 'advocacy' and 'incitement' as explained in Shreya Singhal and why does it matter for free speech?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What did the Supreme Court in Shreya Singhal say about the use of American judgments in interpreting Article 19(1)(a)?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.88
+        },
+        {
+            "question": "What does the Preamble of the Constitution of India declare India to be?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.94
+        },
+        {
+            "question": "What does Article 14 of the Indian Constitution guarantee?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.93
+        },
+        {
+            "question": "What does Article 21 of the Indian Constitution protect?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What rights does Article 19(1) of the Indian Constitution confer on citizens?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What powers does Article 32 of the Constitution confer on the Supreme Court?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What are the Fundamental Duties listed under Article 51A of the Indian Constitution?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What does Article 44 of the Indian Constitution direct the State to do?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What does Article 21A of the Indian Constitution provide?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What restrictions can be placed on the freedom of speech and expression under Article 19(2) of the Constitution?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What does Article 15 of the Constitution prohibit?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.93
+        },
+        {
+            "question": "What does Article 368 of the Constitution deal with?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What is the purpose and scope of the Bharatiya Nyaya Sanhita, 2023?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What is the punishment for murder under the Bharatiya Nyaya Sanhita, 2023?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "How does the Bharatiya Nyaya Sanhita, 2023 define 'rape'?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What is the punishment for rape under the Bharatiya Nyaya Sanhita, 2023?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "How does the Bharatiya Nyaya Sanhita, 2023 define 'organised crime'?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What is the punishment for organised crime under the BNS where it results in death?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "How does the BNS define 'dishonestly' and 'fraudulently'?",
+            "faithfulness": 0.65,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What is the Bharatiya Nagarik Suraksha Sanhita, 2023 and what does it deal with?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "What classes of criminal courts are established under the BNSS, 2023?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.92
+        },
+        {
+            "question": "What does Section 173 of the BNSS say about registration of FIRs?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What time limit does the BNSS prescribe for completing investigation in sexual offence cases?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What does Section 258 of the BNSS say about the time for delivering judgment?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "Under what circumstances may handcuffs be used while making an arrest under the BNSS?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What restriction does the BNSS place on arrest of women?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "What is the Bharatiya Sakshya Adhiniyam, 2023 and what does it replace?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What does Section 23 of the Bharatiya Sakshya Adhiniyam say about confession to a police officer?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.89
+        },
+        {
+            "question": "Under what circumstances is a confession irrelevant under Section 22 of the Bharatiya Sakshya Adhiniyam?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.90
+        },
+        {
+            "question": "What conditions must be satisfied for an electronic record to be admissible under Section 63 of the Bharatiya Sakshya Adhiniyam?",
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.91
+        },
+        {
+            "question": "How does the Bharatiya Sakshya Adhiniyam define 'burden of proof'?",
+            "faithfulness": 0.70,
+            "answer_relevancy": 0.89
+        }
+    ]
+}
