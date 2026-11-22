@@ -1,0 +1,55 @@
+
+services:
+
+  backend:
+    build: .
+    container_name: nyayaai-backend
+
+    ports:
+      - "8080:8080"
+
+    env_file:
+      - .env
+
+    environment:
+      DB_URL: postgresql+psycopg://${POSTGRES_USER:-nyayaai}:${POSTGRES_PASSWORD:-nyayaai_dev_password}@db:5432/${POSTGRES_DB:-nyayaai}
+      HF_HOME: /root/.cache/huggingface
+
+    volumes:
+      - ./storage:/app/storage
+      - huggingface_cache:/root/.cache/huggingface
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: nyayaai-db
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-nyayaai}
+      POSTGRES_USER: ${POSTGRES_USER:-nyayaai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-nyayaai_dev_password}
+
+    ports:
+      - "5434:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U ${POSTGRES_USER:-nyayaai} -d ${POSTGRES_DB:-nyayaai}
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  huggingface_cache:

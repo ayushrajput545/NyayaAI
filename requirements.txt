@@ -23,5 +23,6 @@ rank-bm25
 langgraph
 ragas==0.2.6
 langchain-google-vertexai
+psycopg[binary]
 
 # pip install -r requirements.txt
