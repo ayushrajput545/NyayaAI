@@ -45,8 +45,16 @@ def query_understanding_agent(llm , question:str , chat_history:list):
 
 
 # LEGAL Research Agent
-def legal_research_agent(db , question:str , user_id , document_id=None):
-    results = advanced_search(db , question , user_id , document_id) #Query expansion -> BM25 Keyword Search -> Vector Search -> Deduplication -> Reranking
+def legal_research_agent(
+    db,
+    question: str,
+    user_id,
+    document_id=None,
+    use_my_doc: bool = False,
+):
+    results = advanced_search(
+        db, question, user_id, document_id, use_my_doc
+    )  # Query expansion -> BM25 Keyword Search -> Vector Search -> Deduplication -> Reranking
     return results
 
 
@@ -110,7 +118,8 @@ def legal_analysis_agent(
     llm,
     question: str,
     context: str,
-    chat_history: list
+    chat_history: list,
+    use_my_doc: bool = False,
 ):
 
     chain = LEGAL_ANALYSIS_PROMPT | llm
@@ -118,7 +127,7 @@ def legal_analysis_agent(
     result = chain.invoke({
         "question": question,
         "context": context,
-        "chat_history": chat_history
+        "chat_history": [] if use_my_doc else chat_history,
     })
 
     return result.content

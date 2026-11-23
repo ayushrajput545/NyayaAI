@@ -6,7 +6,8 @@ def ask_question_with_graph(
     question,
     user_id,
     conversation_id=None,
-    document_id=None
+    document_id=None,
+    use_my_doc=False,
 ):
 
     print("Executing Multi-Agent Flow........")
@@ -65,6 +66,7 @@ def ask_question_with_graph(
         "question": question,
         "user_id": user_id,
         "document_id": document_id,
+        "use_my_doc": use_my_doc,
         "db": db,
         "chat_history": chat_history,
 

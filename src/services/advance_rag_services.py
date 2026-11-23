@@ -1,6 +1,10 @@
 from langchain_groq import ChatGroq
 import json #It provides functions to convert between JSON strings and Python objects.
 from src.services.rag_service import search_chunksV2 , rerank_chunks
+import math
+
+def sigmoid(x):
+    return 1 / (1 + math.exp(-x))
 
 
 llm = ChatGroq(model='openai/gpt-oss-120b', temperature=0)
@@ -16,23 +20,23 @@ def rewrite_question(question , chat_history):
     for i in range(len(chat_history)):
         history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
 
-        prompt = f"""
-            Based on the conversation history, rewrite the latest question
-            as a standalone question that can be understood independently.
+    prompt = f"""
+        Based on the conversation history, rewrite the latest question
+        as a standalone question that can be understood independently.
 
-            Do not answer the question.
-            Return only the rewritten question.
+        Do not answer the question.
+        Return only the rewritten question.
 
-            Conversation:
-            {history}
+        Conversation:
+        {history}
 
-            Latest question:
-            {question}
-        """
+        Latest question:
+        {question}
+    """
 
-        response = llm.invoke(prompt)
+    response = llm.invoke(prompt)
 
-        return response.content.strip()
+    return response.content.strip()
 
 
 # Query Expansion: One question can be expressed in multiple ways , We search using these variations to improve the chance of finding relevant chunks.
@@ -88,7 +92,7 @@ def expand_query(question):
 
 
 
-def advanced_search(db, question, user_id, document_id=None):
+def advanced_search(db, question, user_id, document_id=None , use_my_doc=False):
 
     print("Inside Advacne Search...........")
     # 1. Generate alternative queries
@@ -96,6 +100,8 @@ def advanced_search(db, question, user_id, document_id=None):
 
     # 2. Combine original and expanded queries
     queries = [question]
+
+    print("Queries",queries)
 
     for i in range(len(expanded_queries)):
         queries.append(expanded_queries[i])
@@ -109,11 +115,13 @@ def advanced_search(db, question, user_id, document_id=None):
             db,
             queries[i],
             user_id,
-            document_id
+            document_id,
+            use_my_doc
         )
 
         for j in range(len(results)):
             all_results.append(results[j])
+
 
     # 4. Remove duplicate chunks : Deduplication check
     unique_results = {}
@@ -139,10 +147,13 @@ def advanced_search(db, question, user_id, document_id=None):
     # 6. Filter low-relevance results
     relevant_results = []
 
-    for i in range(len(reranked_results)):
 
-        if reranked_results[i]["rerank_score"] >= 0.35:
-            relevant_results.append(reranked_results[i])
+    for result in reranked_results:
+        prob = sigmoid(result["rerank_score"]) #Sigmoid converts logits → probabilities (0 to 1):
+
+        if prob >= 0.35:  # now 0.35 is meaningful (out of 1.0)
+            result["rerank_score"] = prob  # store probability instead of logit
+            relevant_results.append(result)
 
     return relevant_results[:5] #top 5
 

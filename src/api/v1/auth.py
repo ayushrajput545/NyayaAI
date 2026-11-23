@@ -191,6 +191,7 @@ def resend_otp(payload: ResendOTPRequest,db: Session = Depends(get_db)):
 def login(body:LoginRequest , db:Session=Depends(get_db)):
     email = body.email.lower()
     user = db.scalar(select(User).where(User.email == email))
+    print("Hittinnnggg........")
 
     if not user or not verify_password(body.password , user.hashed_password):
         raise HTTPException(

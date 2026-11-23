@@ -24,6 +24,7 @@ class LegalResearchState(BaseModel):
     # Output
     answer: str
     verification_result: str
+    use_my_doc: bool = False
 
 
 def query_understanding_node(state:LegalResearchState):
@@ -45,7 +46,8 @@ def legal_research_node(state: LegalResearchState):
         state.db, 
         state.search_question,
         state.user_id,
-        state.document_id
+        state.document_id,
+        state.use_my_doc,
     )
     
     return {
@@ -74,7 +76,8 @@ def legal_analysis_node(state: LegalResearchState):
         llm,
         state.question,
         state.context,
-        state.chat_history
+        state.chat_history,
+        state.use_my_doc,
     )
 
     return {

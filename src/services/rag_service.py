@@ -9,6 +9,7 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from src.models.conversation import Conversation
 from src.models.message import Message
+from src.services.document_scope import apply_document_scope
 from sentence_transformers import CrossEncoder
 import re
 from rank_bm25 import BM25Okapi
@@ -77,7 +78,7 @@ def indexingPhase(db, document):
 
 
 # Querying phase - retrieval
-def ask_question(db, question , user_id , conversation_id=None , document_id=None):
+def ask_question(db, question , user_id , conversation_id=None , document_id=None , use_my_doc=False):
 
     print("Executing RAG Retrieval............")
     from src.services.advance_rag_services import rewrite_question , advanced_search # import here to remove circular dependency
@@ -139,7 +140,7 @@ def ask_question(db, question , user_id , conversation_id=None , document_id=Non
     # results = search_chunksV2(db, search_question, user_id)
 
     # Advance Search
-    results = advanced_search(db, search_question, user_id , document_id)
+    results = advanced_search(db, search_question, user_id , document_id , use_my_doc)
 
     if len(results) == 0:
 
@@ -176,7 +177,12 @@ def ask_question(db, question , user_id , conversation_id=None , document_id=Non
         """
 
     # pass que and context to llm
-    answer = generate_answer(question, context, chat_history)
+    answer = generate_answer(
+        question,
+        context,
+        chat_history,
+        use_my_doc=use_my_doc,
+    )
 
     # save assitence response
     assistant_message = Message(
@@ -207,7 +213,7 @@ def search_chunks(db, question , user_id):
         .filter( 
             or_(
                 Document.uploaded_by == user_id,
-                Document.uploaded_by == 3
+                Document.uploaded_by == 1
             ), #If the current user is 101, we only want to search their own documents or admins document that ia already uploaded
             DocumentChunk.embedding.isnot(None)
         )
@@ -234,7 +240,9 @@ def search_chunks(db, question , user_id):
 
 
 # Hybrid Search = BM25 search + Vector Search
-def search_chunksV2(db, question, user_id ,document_id=None):
+def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
+    if use_my_doc and document_id is None:
+        return []
 
     # 1. Get all accessible document chunks
     all_chunks = (
@@ -243,19 +251,14 @@ def search_chunksV2(db, question, user_id ,document_id=None):
             Document,
             Document.id == DocumentChunk.document_id
         )
-        .filter(
-            or_(
-                Document.uploaded_by == user_id,
-                Document.uploaded_by == 3
-            )
-        )
     )
 
-    # Apply document-specific filter if document_id is provided: search stricltly from user's uploaded doc
-    if document_id is not None:
-        all_chunks_query = all_chunks_query.filter(
-            DocumentChunk.document_id == document_id
-        )
+    all_chunks = apply_document_scope(
+        all_chunks,
+        user_id,
+        document_id,
+        use_my_doc,
+    )
 
     all_chunks = all_chunks.all() #convert all chunks in list format
 
@@ -295,27 +298,25 @@ def search_chunksV2(db, question, user_id ,document_id=None):
     #5. SEMENTIC/VECTOR Search Previous appraoch
     question_embedding = embedding_model.embed_query(question)
 
-    vector_rows = (
+    vector_query = (
         db.query(DocumentChunk)
         .join(
             Document,
             Document.id == DocumentChunk.document_id
         )
-        .filter(
-            or_(
-                Document.uploaded_by == user_id,
-                Document.uploaded_by == 3
-            ),
-            DocumentChunk.embedding.isnot(None)
-        )
-        .order_by(
-            DocumentChunk.embedding.cosine_distance(
-                question_embedding
-            )
-        )
-        .limit(10)
-        .all()
+        .filter(DocumentChunk.embedding.isnot(None))
     )
+
+    vector_query = apply_document_scope(
+        vector_query,
+        user_id,
+        document_id,
+        use_my_doc,
+    )
+
+    vector_rows = vector_query.order_by(
+        DocumentChunk.embedding.cosine_distance(question_embedding)
+    ).limit(10).all()
 
     # 6. Combine both result lists using RRF
     hybrid_results = reciprocal_rank_fusion(
@@ -349,12 +350,13 @@ def search_chunksV2(db, question, user_id ,document_id=None):
 
 
 # Pass those retrived chunks along with que to LLM
-def generate_answer(question , context, chat_history):
+def generate_answer(question, context, chat_history, use_my_doc=False):
 
     history = ""
 
-    for i in range(len(chat_history)):
-        history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
+    if not use_my_doc:
+        for i in range(len(chat_history)):
+            history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
     
     
     prompt = f"""

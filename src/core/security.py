@@ -22,7 +22,7 @@ def verify_password(password: str, hashed_password: str) -> bool:
     return password_hash.verify(password, hashed_password)
 
 def create_access_token(user_id: int) -> str:
-    expires_at = datetime.now(timezone.utc) + timedelta(minutes=30)
+    expires_at = datetime.now(timezone.utc) + timedelta(days=1)
 
     payload = {
         "sub": str(user_id),
