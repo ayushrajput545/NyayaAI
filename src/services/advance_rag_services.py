@@ -36,6 +36,8 @@ def rewrite_question(question , chat_history):
 
     response = llm.invoke(prompt)
 
+    print("Rewritten Query: ", response.content)
+
     return response.content.strip()
 
 

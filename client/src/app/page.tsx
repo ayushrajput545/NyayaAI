@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   ArrowDown,
   ArrowRight,
@@ -13,7 +12,7 @@ import {
 } from "lucide-react";
 import { Footer } from "@/components/layout/footer";
 import { Navbar } from "@/components/layout/navbar";
-import { Button } from "@/components/ui/button";
+import { HeroActions } from "@/components/home/hero-actions";
 import { Card } from "@/components/ui/card";
 import {
   getYouTubeEmbedUrl,
@@ -150,17 +149,7 @@ export default function Home() {
               AI-powered research. Ask in English or Hindi, follow the sources,
               and spend more time on the questions that matter.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-3">
-              <Button asChild size="lg">
-                <Link href="/workspace">
-                  Try it Now
-                  <ArrowRight aria-hidden="true" className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/login">Login</Link>
-              </Button>
-            </div>
+            <HeroActions />
             <a
               className="mt-9 inline-flex items-center gap-2 text-sm font-medium text-slate-500 transition-colors hover:text-blue-800"
               href="#how-it-works"

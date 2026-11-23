@@ -4,7 +4,6 @@ from pydantic import BaseModel
 from src.config.db import get_db
 from src.models.user import User
 from src.core.dependencies import get_current_user
-from src.models.document import Document
 from src.services.rag_service import ask_question
 from src.agents.graph_service import ask_question_with_graph
 
@@ -20,22 +19,6 @@ class AskQueRequest(BaseModel):
 
 @rag_routes.post('/ask_que')
 def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), current_user: User = Depends(get_current_user)):
-    if body.use_my_doc:
-        if body.document_id is None:
-            raise HTTPException(
-                status_code=422,
-                detail="document_id is required when use_my_doc is true.",
-            )
-
-        document = db.query(Document).filter(
-            Document.id == body.document_id,
-            Document.uploaded_by == current_user.id,
-        ).first()
-        if document is None:
-            raise HTTPException(
-                status_code=404,
-                detail="Document not found.",
-            )
 
     if body.use_multi_agent:
         # Multi-Agent Flow
@@ -45,7 +28,7 @@ def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), curren
             current_user.id,
             body.conversation_id,
             body.document_id,
-            body.use_my_doc,
+            body.use_my_doc
         )
 
     else:

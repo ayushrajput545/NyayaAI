@@ -9,7 +9,6 @@ from langchain_groq import ChatGroq
 from dotenv import load_dotenv
 from src.models.conversation import Conversation
 from src.models.message import Message
-from src.services.document_scope import apply_document_scope
 from sentence_transformers import CrossEncoder
 import re
 from rank_bm25 import BM25Okapi
@@ -36,6 +35,7 @@ def tokenize(text):
 # Indexing Phase
 def indexingPhase(db, document):
 
+    print("Indexing Phase...........")
     #1. Load the PDF already saved by the upload endpoint
     pdf_path = get_document_path(document.storage_key)
 
@@ -147,6 +147,7 @@ def ask_question(db, question , user_id , conversation_id=None , document_id=Non
         answer = (
             "I couldn't find sufficiently relevant information "
             "in your uploaded documents to answer this question."
+            "PLEASE ASK A LEGAL QUESTION"
         )
 
         assistant_message = Message(
@@ -177,12 +178,7 @@ def ask_question(db, question , user_id , conversation_id=None , document_id=Non
         """
 
     # pass que and context to llm
-    answer = generate_answer(
-        question,
-        context,
-        chat_history,
-        use_my_doc=use_my_doc,
-    )
+    answer = generate_answer(question, context, chat_history)
 
     # save assitence response
     assistant_message = Message(
@@ -241,9 +237,9 @@ def search_chunks(db, question , user_id):
 
 # Hybrid Search = BM25 search + Vector Search
 def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
-    if use_my_doc and document_id is None:
-        return []
 
+    print("Inside Search_ChunkV2...........")
+ 
     # 1. Get all accessible document chunks
     all_chunks = (
         db.query(DocumentChunk, Document.filename)
@@ -251,16 +247,23 @@ def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
             Document,
             Document.id == DocumentChunk.document_id
         )
+        .filter(
+            or_(
+                Document.uploaded_by == user_id,
+                Document.uploaded_by == 1
+            )
+        )
     )
 
-    all_chunks = apply_document_scope(
-        all_chunks,
-        user_id,
-        document_id,
-        use_my_doc,
-    )
+    # Apply document-specific filter if document_id is provided: search stricltly from user's uploaded doc
+    if use_my_doc is True:
+        all_chunks = all_chunks.filter(
+            DocumentChunk.document_id == document_id
+        )
 
     all_chunks = all_chunks.all() #convert all chunks in list format
+
+    print("Length of all Retrieved Chunks:", len(all_chunks))
 
     if not all_chunks:
         return []
@@ -304,19 +307,32 @@ def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
             Document,
             Document.id == DocumentChunk.document_id
         )
-        .filter(DocumentChunk.embedding.isnot(None))
+        .filter(
+            or_(
+                Document.uploaded_by == user_id,
+                Document.uploaded_by == 1
+            ),
+            DocumentChunk.embedding.isnot(None)
+        )
     )
 
-    vector_query = apply_document_scope(
-        vector_query,
-        user_id,
-        document_id,
-        use_my_doc,
-    )
+    # Apply document-specific filter if user wants search strictly
+    # from their uploaded document
+    if use_my_doc is True:
+        vector_query = vector_query.filter(
+            DocumentChunk.document_id == document_id
+        )
 
-    vector_rows = vector_query.order_by(
-        DocumentChunk.embedding.cosine_distance(question_embedding)
-    ).limit(10).all()
+    vector_rows = (
+        vector_query
+        .order_by(
+            DocumentChunk.embedding.cosine_distance(
+                question_embedding
+            )
+        )
+        .limit(10)
+        .all()
+    )
 
     # 6. Combine both result lists using RRF
     hybrid_results = reciprocal_rank_fusion(
@@ -345,18 +361,18 @@ def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
             "content": chunk.content
         })
 
+    print("Re-Rank Input", rerank_input)
     return rerank_input  # Reranking happen in advance_search function
 
 
 
 # Pass those retrived chunks along with que to LLM
-def generate_answer(question, context, chat_history, use_my_doc=False):
+def generate_answer(question , context, chat_history):
 
     history = ""
 
-    if not use_my_doc:
-        for i in range(len(chat_history)):
-            history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
+    for i in range(len(chat_history)):
+        history += f"{chat_history[i]['role']}: {chat_history[i]['content']}\n"
     
     
     prompt = f"""

@@ -3,12 +3,22 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, Menu, Scale, X } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/auth-context";
 
 function Navbar() {
+  const router = useRouter();
+  const { user, status, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
+  const isAuthenticated = status === "authenticated";
 
   const closeMenu = () => setIsOpen(false);
+  const handleLogout = () => {
+    logout();
+    closeMenu();
+    router.replace("/");
+  };
 
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur-md">
@@ -49,12 +59,28 @@ function Navbar() {
           >
             About
           </Link>
-          <Button asChild size="sm" variant="outline">
-            <Link href="/login">
-              Login
-              <ArrowUpRight aria-hidden="true" className="size-3.5" />
-            </Link>
-          </Button>
+          {isAuthenticated ? (
+            <div className="flex items-center gap-3">
+              <span className="max-w-36 truncate text-sm text-slate-500">
+                {user?.name}
+              </span>
+              <Button
+                onClick={handleLogout}
+                size="sm"
+                type="button"
+                variant="outline"
+              >
+                Logout
+              </Button>
+            </div>
+          ) : (
+            <Button asChild size="sm" variant="outline">
+              <Link href="/login">
+                Login
+                <ArrowUpRight aria-hidden="true" className="size-3.5" />
+              </Link>
+            </Button>
+          )}
         </div>
 
         <button
@@ -99,12 +125,23 @@ function Navbar() {
             >
               About
             </Link>
-            <Button asChild className="mt-2 w-full" variant="outline">
-              <Link href="/login" onClick={closeMenu}>
-                Login
-                <ArrowUpRight aria-hidden="true" className="size-3.5" />
-              </Link>
-            </Button>
+            {isAuthenticated ? (
+              <Button
+                className="mt-2 w-full"
+                onClick={handleLogout}
+                type="button"
+                variant="outline"
+              >
+                Logout
+              </Button>
+            ) : (
+              <Button asChild className="mt-2 w-full" variant="outline">
+                <Link href="/login" onClick={closeMenu}>
+                  Login
+                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                </Link>
+              </Button>
+            )}
           </div>
         </div>
       ) : null}
