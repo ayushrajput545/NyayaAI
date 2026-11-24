@@ -56,7 +56,7 @@ The platform supports Indian Supreme Court judgments, constitutional provisions,
 
 # 🎥 Application Walkthrough
 
-**Video:** [Add NyayaAI Application Walkthrough Here](YOUR_APPLICATION_WALKTHROUGH_VIDEO_URL)
+**Video:** (https://youtu.be/IICkGENzIdg)
 
 The walkthrough demonstrates: user registration and email verification, login, dashboard navigation, uploading legal PDFs, document processing and indexing, asking questions in Quick Research and Deep Research modes, viewing retrieved sources and page references, generating document summaries, and managing conversation history.
 
