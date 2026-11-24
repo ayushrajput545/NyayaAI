@@ -27,8 +27,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
-# Backend port
-EXPOSE 8080
+# Backend port ; use 10000 cuz render default webserivce port is 10000
+EXPOSE 10000 
 
 # Run database migrations and start FastAPI
-CMD ["sh", "-c", "alembic upgrade head && python -m uvicorn main:app --host 0.0.0.0 --port 8080"]
+CMD ["sh", "-c", "alembic upgrade head && exec python -m uvicorn main:app --host 0.0.0.0 --port ${PORT:-10000}"]
