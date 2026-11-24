@@ -1,7 +1,7 @@
 {
-    "total_questions": 3,
-    "faithfulness_evaluated": 3,
-    "answer_relevancy_evaluated": 3,
+    "total_questions": 52,
+    "faithfulness_evaluated": 52,
+    "answer_relevancy_evaluated": 52,
     "average_faithfulness": 0.86, 
     "average_answer_relevancy": 0.8988036893498246,
     "individual_results": [
