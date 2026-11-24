@@ -42,6 +42,8 @@ def search_documennt( body: AskQueRequest, db: Session = Depends(get_db), curren
             body.use_my_doc
         )
 
+    print("Result........",result)
+
     if result is None:
         raise HTTPException(
             status_code=404,

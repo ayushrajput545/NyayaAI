@@ -1,5 +1,5 @@
-export const YOUTUBE_WALKTHROUGH_URL = "";
-export const GITHUB_REPOSITORY_URL = "";
+export const YOUTUBE_WALKTHROUGH_URL = "https://youtu.be/Tz5XakUp1oU";
+export const GITHUB_REPOSITORY_URL = "https://github.com/ayushrajput545/NyayaAI";
 
 function getYouTubeEmbedUrl(videoUrl: string) {
   if (!videoUrl.trim()) {

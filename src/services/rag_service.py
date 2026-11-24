@@ -361,7 +361,7 @@ def search_chunksV2(db, question, user_id ,document_id=None , use_my_doc=False):
             "content": chunk.content
         })
 
-    print("Re-Rank Input", rerank_input)
+    # print("Re-Rank Input", rerank_input)
     return rerank_input  # Reranking happen in advance_search function
 
 

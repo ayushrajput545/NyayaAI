@@ -123,6 +123,7 @@ interface FailedRequest {
 
 function getWorkspaceErrorMessage(error: unknown, fallback: string) {
   if (axios.isAxiosError(error)) {
+    console.log("Error:", error)
     const detail: unknown = error.response?.data?.detail;
 
     if (typeof detail === "string") {
@@ -151,7 +152,7 @@ function getWorkspaceErrorMessage(error: unknown, fallback: string) {
     }
 
     if (!error.response) {
-      return "Check your connection and try again.";
+      return error.message || "Unable to reach the server. Please try again.";
     }
   }
 
@@ -223,6 +224,7 @@ function WorkspaceContent({
         );
       setConversations(data);
     } catch (error) {
+      console.log("Error: ", error)
       setHistoryError(
         getWorkspaceErrorMessage(
           error,
@@ -450,7 +452,10 @@ function WorkspaceContent({
         await loadConversations();
       }
     } catch (error) {
-      setMessages((current) => current.slice(0, -1));
+      console.log("Error In Ask Question: ", error);
+      setMessages((current) => {
+        return current.slice(0, -1);
+      });
       setQuestion(message);
       const status = axios.isAxiosError(error)
         ? error.response?.status
@@ -471,7 +476,7 @@ function WorkspaceContent({
         (error.response?.status === 401 || error.response?.status === 403)
       ) {
         setWorkspaceError(
-          "The current backend requires an authenticated user for every Quick Search request. Sign in to run this question; no anonymous conversation was created.",
+          "Only authenticated users can make a Quick Search request. Sign in to run this question; no anonymous conversation was created.",
         );
       } else if (
         mode === "deep" &&
@@ -482,6 +487,7 @@ function WorkspaceContent({
           "Your session has expired. Log in again to continue Deep Research.",
         );
       } else {
+        console.log("Error In Ask Question: ", error)
         setWorkspaceError(
           getWorkspaceErrorMessage(error, "Unable to complete this research request."),
         );
